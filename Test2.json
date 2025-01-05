@@ -1,0 +1,141 @@
+{
+    "info": {
+      "_postman_id": "018c866b-400b-4101-baaf-a4d99c619e91",
+      "name": "Sample",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "todos_path_1",
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "exec": [
+                "pm.test(\"Status code is 200\", function () {\r",
+                "    pm.response.to.have.status(200);\r",
+                "});\r",
+                "\r",
+                "pm.test(\"userId should be equal to 1\", () => {\r",
+                "    pm.expect(response.userId).to.equal(1);\r",
+                "});\r",
+                "\r"
+              ],
+              "type": "text/javascript"
+            }
+          },
+          {
+            "listen": "prerequest",
+            "script": {
+              "exec": [
+                ""
+            ],
+              "type": "text/javascript"
+            }
+          }
+        ],
+        "request": {
+          "method": "GET",
+          "header": [],
+          "url": {
+            "raw": "https://{{url}}/todos/:todoId",
+            "protocol": "https",
+            "host": [
+              "{{url}}"
+            ],
+            "path": [
+              "todos",
+              "1"
+            ],
+            "variable": [
+              {
+                "key": "todoId",
+                "value": "1"
+              }
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "comments_query_1",
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "exec": [
+                "pm.test(\"postId should be equal to 1\", () => {\r",
+                "    pm.expect(response[0].postId).to.equal(1);\r",
+                "});\r",
+                "\r",
+                "pm.test(\"email should be equal to 'Eliseo@gardner.biz'\", () => {\r",
+                "    pm.expect(response[0].email).to.equal(\"Eliseo@gardner.biz\");\r",
+                "});\r",
+                "\r",
+                "pm.test(\"name should be equal to 'Praveen'\", () => {\r",
+                "    pm.expect(response[1].name).to.equal(\"quo vero reiciendis velit similique earum\");\r",
+                "});"
+              ],
+              "type": "text/javascript" 
+            }
+          },
+          {
+            "listen": "prerequest",
+            "script": {
+              "exec": [
+                "pm.variables.set(\"postId\", 1);"
+              ],
+              "type": "text/javascript"
+            }
+          }
+        ],
+        "request": {
+          "method": "GET",
+          "header": [],
+          "url": {
+            "raw": "https://{{url}}/comments?postId={{postId}}",
+            "protocol": "https",
+            "host": [
+              "{{url}}"
+            ],
+            "path": [
+              "comments"
+            ],
+            "query": [
+              {
+                "key": "postId",
+                "value": "{{postId}}"
+              }
+            ]
+          }
+        },
+        "response": []
+      }
+    ],
+    "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+            ""
+        ]
+      }
+    }
+  ],
+    "variable": [
+      {
+        "key": "url",
+        "value": "jsonplaceholder.typicode.com"
+      }
+    ]
+  }
